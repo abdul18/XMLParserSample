@@ -27,6 +27,8 @@ class ViewController: UIViewController, NSXMLParserDelegate {
         xmlParser?.parse()
         
         
+    
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,6 +86,7 @@ class ViewController: UIViewController, NSXMLParserDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     
     {
+
         return array.count
     }
     
@@ -94,7 +97,16 @@ class ViewController: UIViewController, NSXMLParserDelegate {
                 
         cell.textLabel?.text = array.objectAtIndex(indexPath.row).valueForKey("title") as! NSString as String
         cell.detailTextLabel?.text = array.objectAtIndex(indexPath.row).valueForKey("description") as! NSString as String
+//        cell.textLabel?.numberOfLines = 2
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        cell.textLabel?.preferredMaxLayoutWidth = CGFloat(12)
         
+        cell.detailTextLabel?.numberOfLines = 0
+        cell.detailTextLabel?.lineBreakMode = NSLineBreakMode.ByTruncatingTail
+        cell.detailTextLabel?.preferredMaxLayoutWidth = CGFloat(44)
+        cell.textLabel?.sizeToFit()
+        cell.detailTextLabel?.sizeToFit()
         return cell
     }
 
